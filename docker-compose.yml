@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  maven: 
+    build: maven-build
+    container_name: maven-build
+
+
+  tomcat:
+    image: davidcaste/alpine-tomcat:tomcat8
+
+    command: /opt/tomcat/bin/catalina.sh run
+
+
