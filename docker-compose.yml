@@ -4,10 +4,11 @@ services:
     build: ./maven-build
     container_name: maven-build
     volumes:
-      - mydata:/boxfuse-sample-java-war-hello/target/
+      - mydata:/target/
 
   tomcat:
     image: davidcaste/alpine-tomcat:tomcat8
+    container_name: tomcat
     depends_on:
       - maven
     ports:
@@ -15,9 +16,7 @@ services:
         published: 8888
         protocol: tcp
     volumes:
-      - type: volume
-        source: mydata
-        target: /usr/local/tomcat/webapps/
+      - ./target/hello-1.0.war:/usr/local/tomcat/webapps/hello-1.0.war
     command: /opt/tomcat/bin/catalina.sh run
 
 volumes:
