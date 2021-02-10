@@ -9,8 +9,6 @@ services:
   tomcat:
     image: davidcaste/alpine-tomcat
     container_name: tomcat
-    depends_on:
-      - maven
     ports:
       - 8888:8080
     volumes:
