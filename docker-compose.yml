@@ -1,13 +1,25 @@
-version: "3.8"
+version: "3.9"
 services:
   maven: 
-    build: maven-build
+    build: ./maven-build
     container_name: maven-build
-
+    volumes:
+      - mydata:/boxfuse-sample-java-war-hello/target/
 
   tomcat:
     image: davidcaste/alpine-tomcat:tomcat8
-
+    depends_on:
+      - maven
+    ports:
+      - target: 8080
+        published: 8888
+        protocol: tcp
+    volumes:
+      - type: volume
+        source: mydata
+        target: /usr/local/tomcat/webapps/
     command: /opt/tomcat/bin/catalina.sh run
 
+volumes:
+  mydata:
 

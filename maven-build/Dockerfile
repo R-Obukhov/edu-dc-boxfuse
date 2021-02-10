@@ -1,5 +1,13 @@
-FROM maven:3.6.1-jdk-8-alpine
+FROM alpine:3.7
 
-COPY ./boxfuse-sample-java-war-hello/* ./
-RUN mvn package && cp target/hello-1.0.war /hello-1.0.war
+RUN apk add --no-cache git \
+    && apk add --no-cache maven \
+    && apk add --no-cache openjdk11 --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+#WORKDIR ./
+RUN git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git 
+WORKDIR /boxfuse-sample-java-war-hello
+RUN mvn package
+RUN ls -la
+CMD ["/bin/bash"]
+# cp /target/hello-1.0.war /hello-1.0.war
 
