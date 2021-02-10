@@ -8,6 +8,10 @@ RUN git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
 WORKDIR /boxfuse-sample-java-war-hello
 RUN mvn package
 RUN ls -la
+<<<<<<< HEAD
 #CMD ["/bin/bash"]
+=======
+#CMD ["/bin/sh -c"]
+>>>>>>> c42ba5083065a3997fea4a9727c629721b34308e
 # cp /target/hello-1.0.war /hello-1.0.war
 
